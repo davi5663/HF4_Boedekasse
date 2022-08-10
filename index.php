@@ -12,8 +12,8 @@
 
         body {
             font-family: Arial;
-            margin-top: 4%;
-            padding: 20px;
+            margin-top: 2%;
+            padding: 25px;
             background: #f1f1f1;
         }
 
@@ -97,5 +97,4 @@
     <!--- End of Script Source Files -->
 
 </body>
-
 </html>
