@@ -23,7 +23,7 @@ mysqli_next_result($conn);
 
 echo '<div class="rightcolumn">';
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-$result = mysqli_query($conn, "CALL MostFines");
+$result = mysqli_query($conn, "CALL PlayerWithMostFines");
 $resultCheck = mysqli_num_rows($result);
 if ($resultCheck > 0) {
     while ($row = mysqli_fetch_array($result)) {
