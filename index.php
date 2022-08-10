@@ -1,52 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <?php include_once 'includes/db.php'; ?>
     <?php include 'includes/head.php'; ?>
-</head>
-<body>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial;
+            margin-top: 4%;
+            padding: 20px;
+            background: #f1f1f1;
+        }
+
+        .header {
+            padding: 30px;
+            font-size: 40px;
+            text-align: center;
+            background: white;
+        }
+
+        .card {
+            background-color: white;
+            padding: 10px;
+            margin-top: 20px;
+        }
+
+        .fakeimg {
+            background-color: green;
+            color: white;
+            width: 100%;
+            padding: 20px;
+        }
+
+        .leftcolumn {
+            float: left;
+            width: 75%;
+        }
+
+        .rightcolumn {
+            float: right;
+            width: 25%;
+            padding-left: 20px;
+        }
+
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .footer {
+            padding: 20px;
+            text-align: center;
+            background: #ddd;
+            margin-top: 20px;
+        }
+
+
+        /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+        @media screen and (max-width: 800px) {
+
+            .leftcolumn,
+            .rightcolumn {
+                width: 100%;
+                padding: 0;
+            }
+
+            body {
+                margin-top: 12%;
+            }
+
+            .card {
+                padding: 3%;
+                margin-top: 2%;
+            }
+        }
+    </style>
     <!--- Navigation -->
-    <?php $page='home'; include 'includes/navbar.php'; ?>
+
+    <?php $page = 'fines';
+    include 'includes/navbar.php'; ?>
+
     <!--- End Navigation -->
 
-    <!--- Start Jumbotron -->
-    <div class="jumbotron">
-        <div class="container">
-		<?php
-			include_once 'includes/db.php';
+<body>
+    <div class="row">
+        <?php include_once './testing/storedprocedures.php' ?>
+    </div>
+    <!--- Script Source Files -->
+    <?php include_once 'includes/scripts.php'; ?>
+    <!--- End of Script Source Files -->
 
-			$sql = "SELECT 
-					PersonIdentification.PI_ID as 'ID', 
-					PersonIdentification.PI_FirstName as 'First Name', 
-					PersonIdentification.PI_LastName as 'Last Name',
-					Gender.G_Gender as 'Gender', 
-					PersonIdentification.PI_Birthday as 'Birthday',
-					PersonIdentification.PI_Image as 'Image'
-					
-					FROM PersonIdentification 
-					
-					INNER JOIN Gender ON PersonIdentification.PI_Gender=Gender.G_ID";
-			$result = mysqli_query($conn, $sql);
-			$resultCheck = mysqli_num_rows($result);
+</body>
 
-			if ($resultCheck > 0) {
-				while ($row = mysqli_fetch_assoc($result)) {
-					echo 
-            '
-                <div class="row justify-content-center text-left">
-                    <div class="col-10 col-md-4" >
-                        <a>
-                            <img class="col-10 col-md-6"src="' . $row['Image'] . '">
-                        </a>
-                    </div>
-                    <div class="col-10 col-md-5" >
-						<h3 class="pb-3 pt-4" style="color:black;">' . $row['First Name'] . ' '. $row['Last Name'] . '</h3>
-						<h3 class="pb-3" style="color:black;">' . $row['Gender'] . ' </h3>
-						<h3 class="pb-3" style="color:black;">' . $row['Birthday'] . ' </h3>
-                    </div>
-                </div>
-            ';
-				}
-			}
-            ?>
-            <!--- End Row -->
-        </div><!--- End Container --> 
+</html>
