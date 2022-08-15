@@ -30,7 +30,7 @@
 					<li class="nav-item">
 						<a class="nav-link <?php if ($page == 'players') {
 												echo 'active';
-											} ?>" href="index.php">Spillere</a>
+											} ?>" href="players.php">Spillere</a>
 					</li>
 			</div>
 		</div>
