@@ -119,14 +119,10 @@
         </form>
         <?php
         if (isset($_POST['submit'])) {
-            $query = "SELECT 
-            club.C_ID,
-            club.C_Name,
-            player.PL_Name
-            FROM finedb.club
-            
-            INNER JOIN finedb.player
-            ON player.PL_C_ID = club.C_ID 
+            $query = "SELECT C_ID, C_Name
+            from finedb.club
+            INNER JOIN finedb.player ON player.PL_C_ID = club.C_ID 
+            WHERE C_ID = PL_C_ID;
             ";
             $data = mysqli_query($conn, $query);
 
@@ -137,7 +133,7 @@
                 while ($row = mysqli_fetch_array($data)) {
                     echo "<tr>
                         <td style=font-weight: bold;>" . $row['C_Name'] . "<br>" . "</td>
-                        <td>" . $row['PL_Name'] . "<br> <br>". "</td>                                      
+                        <td>" . $row['PL_Name'] . "<br> <br>" . "</td>                                      
                       </tr>";
                 }
             }
