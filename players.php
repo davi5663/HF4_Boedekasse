@@ -98,6 +98,7 @@
         <form id="chooseTeam" method="post" action="#">
             <h3 name="idTeam" id="idTeam"></h3>
             <select name="teamSelect" id="teamSelect" required>
+                <option value=0>Select Team</option>
                 <?php
                 $sql = "SELECT * FROM finedb.club";
                 $result = mysqli_query($conn, $sql);

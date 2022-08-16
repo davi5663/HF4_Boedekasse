@@ -10,6 +10,7 @@
 </head>
 
 <body>
+    <!--- End Navigation -->
     <div class="container">
         <h2>Opret bøde</h2>
         <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#createModal">Tryk her for at oprette en bøde</button>

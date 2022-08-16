@@ -37,6 +37,11 @@
 												echo 'active';
 											} ?>" href="livescore.php">LiveScore</a>
 					</li>
+					<li class="nav-item">
+						<a class="nav-link <?php if ($page == 'calendar') {
+												echo 'active';
+											} ?>" href="calendar.php">Kommende Kampe</a>
+					</li>
 			</div>
 		</div>
 	</nav>

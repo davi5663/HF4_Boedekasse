@@ -5,7 +5,7 @@
 <?php include_once 'includes/db.php'; ?>
 <?php include 'includes/head.php'; ?>
 
-<?php $page = 'livescore';
+<?php $page = 'calendar';
 include 'includes/navbar.php'; ?>
 
 <head>
@@ -106,48 +106,30 @@ include 'includes/navbar.php'; ?>
     require_once 'LiveScoreApi.class.php';
 
     $LiveScoreApi = new LiveScoreApi($API_KEY,  $API_SECRET, $servername, $username, $password, $dbname);
-    $scores = $LiveScoreApi->getLivescores();
+    $fixtures = $LiveScoreApi->getUpcomingGames();
 
-    include 'includes/left.php';
+    include 'includes/left.php'; ?>
 
-    foreach ($scores as $_score) { ?>
-
-        <div class="match-line">
+        <?php foreach ($fixtures as $_fixtures) { ?>
             <div class="row bg-info text-dark">
                 <div class="col-md-2 time-box">
-                    <?= $_score['competition_name'] ?>
-                </div>
-                <div class="col-md-2 time-box">
-                    <?= $_score['scheduled'] ?>
-                </div>
-            </div>
-            <div class="row bg-info text-dark">
-                <div class="col-md-2 time-box">
-                    <?= $_score['time'] ?>'
+                    <?= $_fixtures['time'] ?>
                 </div>
                 <div class="col-md-4 team-name">
-                    <?= $_score['home_name'] ?>
+                    <?= $_fixtures['home_name'] ?>
                 </div>
-                <div class="col-md-2 score-box">
-                    <?= $_score['score'] ?>
+                <div class="col-md-2">
+                    v
                 </div>
-                <div class="col-md-4 team-name rigth">
-                    <?= $_score['away_name'] ?>
+                <div class="col-md-4 team-name">
+                    <?= $_fixtures['away_name'] ?>
                 </div>
             </div>
             <br>
-            <br>
-        </div>
 </body>
 
 </html>
-<script>
-    windows.setTimeout(function() {
-        window.location.reload();
-    }, 30000);
-</script>
-
 <?php
-    }
-    include 'includes/right.php';
+        }
+        include 'includes/right.php';
 ?>

@@ -1,8 +1,10 @@
 <?php
+
 /**
  * Live Score API Client class for accessing the data
  */
-class LiveScoreApi {
+class LiveScoreApi
+{
 
 	protected $_key;
 	protected $_secret;
@@ -21,7 +23,8 @@ class LiveScoreApi {
 	 * @param string $db the name of the MySQL database where we are going to cache responses
 	 * @throws InvalidArgumentException if there is a problem with the configuration
 	 */
-	public function __construct($API_KEY, $API_SECRET, $servername, $username, $password, $dbname) {
+	public function __construct($API_KEY, $API_SECRET, $servername, $username, $password, $dbname)
+	{
 		if (strlen($API_KEY) != 16) {
 			throw new InvalidArgumentException('Live Score API key must be 16 characters');
 		}
@@ -55,7 +58,8 @@ class LiveScoreApi {
 	 * @param array $params the parameters to be provided to the endpoint
 	 * @return string the full URL to be called
 	 */
-	protected function _buildUrl($endpoint, $params) {
+	protected function _buildUrl($endpoint, $params)
+	{
 		$params['key'] =  $this->_key;
 		$params['secret'] = $this->_secret;
 		return $this->_baseUrl . $endpoint . '?' . http_build_query($params);
@@ -67,10 +71,24 @@ class LiveScoreApi {
 	 * @param array $params filter para meters
 	 * @return array with live scores data
 	 */
-	public function getLivescores($params = []) {
+	public function getLivescores($params = [])
+	{
 		$url = $this->_buildUrl('scores/live.json', $params);
 		$data = $this->_makeRequest($url);
 		return $data['match'];
+	}
+
+	/**
+	 * Gets the live scores
+	 *
+	 * @param array $params filter para meters
+	 * @return array with live scores data
+	 */
+	public function getUpcomingGames($params = [])
+	{
+		$url = $this->_buildUrl('fixtures/matches.json', $params);
+		$data = $this->_makeRequest($url);
+		return $data['fixtures'];
 	}
 
 	/**
@@ -81,7 +99,8 @@ class LiveScoreApi {
 	 * @return array with data
 	 * @throws RuntimeException if there is something wrong with the request
 	 */
-	protected function _makeRequest($url) {
+	protected function _makeRequest($url)
+	{
 		$json = $this->_useCache($url);
 
 		if ($json) {
@@ -107,7 +126,8 @@ class LiveScoreApi {
 	 * @return boolean|string false if the cache has become invalid otherwise
 	 * the JSON response that was cached
 	 */
-	protected function _useCache($url) {
+	protected function _useCache($url)
+	{
 		$url = mysqli_escape_string($this->connection, crc32($url));
 		$query = "SELECT json FROM finedb.cache WHERE url = '$url' AND time > (NOW()-INTERVAL 60 SECOND)";
 		$result = mysqli_query($this->connection, $query);
@@ -131,7 +151,8 @@ class LiveScoreApi {
 	 * @param string $url the Live Score API URL that was called
 	 * @param string $json the JSON that was returned by the endpoint
 	 */
-	protected function _saveCache($url, $json) {
+	protected function _saveCache($url, $json)
+	{
 		$url = mysqli_escape_string($this->connection, crc32($url));
 		$json = mysqli_escape_string($this->connection, $json);
 
@@ -140,4 +161,3 @@ class LiveScoreApi {
 		mysqli_query($this->connection, $query);
 	}
 }
-
