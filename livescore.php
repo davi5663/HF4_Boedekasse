@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php include_once 'includes/scripts.php'; ?>
+<?php include_once 'includes/db.php'; ?>
+<?php include 'includes/head.php'; ?>
+
+<?php $page = 'livescore';
+include 'includes/navbar.php'; ?>
+
 <head>
-    <?php include_once 'includes/db.php'; ?>
-    <?php include 'includes/head.php'; ?>
+    <meta http-equiv="refresh" content="30">
     <style>
         * {
             box-sizing: border-box;
@@ -86,31 +92,60 @@
             }
         }
     </style>
+
+
     <!--- Navigation -->
-
     <?php include 'includes/navbar.php'; ?>
-
-
     <!--- End Navigation -->
 
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm">
-                <h5></h5>
-                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+    <?php
+    ini_set('display_errors', 'Off');
+    error_reporting(E_ALL);
+
+    require_once 'LiveScoreApi.class.php';
+
+    $LiveScoreApi = new LiveScoreApi($API_KEY,  $API_SECRET, $servername, $username, $password, $dbname);
+    $scores = $LiveScoreApi->getLivescores();
+
+    include 'includes/left.php';
+
+    foreach ($scores as $_score) { ?>
+
+        <div class="match-line">
+            <div class="row">
+                <div class="col-md-2 time-box">
+                    <?= $_score['competition_name'] ?>
+                </div>
+                <div class="col-md-2 time-box">
+                    <?= $_score['scheduled'] ?>
+                </div>
             </div>
-            <div class="col-sm">
-                Opret bøde
-            </div>
-            <div class="col-sm">
-                Opret en brugerdefinderede bøde
+            <div class="row">
+                <div class="col-md-2 time-box">
+                    <?= $_score['time'] ?>
+                </div>
+                <div class="col-md-4 team-name">
+                    <?= $_score['home_name'] ?>
+                </div>
+                <div class="col-md-2 score-box">
+                    <?= $_score['score'] ?>
+                </div>
+                <div class="col-md-4 team-name rigth">
+                    <?= $_score['away_name'] ?>
+                </div>
             </div>
         </div>
-    </div>
-    <!--- Script Source Files -->
-    <?php include_once 'includes/scripts.php'; ?>
-    <!--- End of Script Source Files -->
-
 </body>
+
 </html>
+<script>
+    windows.setTimeout(function() {
+        window.location.reload();
+    }, 30000);
+</script>
+
+<?php
+    }
+    include 'includes/right.php';
+?>

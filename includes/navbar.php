@@ -32,6 +32,11 @@
 												echo 'active';
 											} ?>" href="players.php">Spillere</a>
 					</li>
+					<li class="nav-item">
+						<a class="nav-link <?php if ($page == 'livescore') {
+												echo 'active';
+											} ?>" href="livescore.php">LiveScore</a>
+					</li>
 			</div>
 		</div>
 	</nav>
