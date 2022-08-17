@@ -10,7 +10,7 @@ if (isset($_POST['submit-button'])) {
   if (mysqli_query($conn, $sql)) {
     echo
     '<script>
-        window.alert("Bøde Oprettet!");
+        window.alert("Bøde givet!");
     </script>';
   } else {
     echo "Error: " . $sql . ":-" . mysqli_error($conn);
@@ -19,13 +19,6 @@ if (isset($_POST['submit-button'])) {
   mysqli_close($conn);
 }
 ?>
-
-<body>
-  <h1>Bøde Oprettet</h1>
-  <a href="../admin.php">
-    <button>Admin</button>
-  </a>
-  <a href="../index.php">
-    <button>Forside</button>
-  </a>
-</body>
+<head>
+    <meta http-equiv="refresh" content="0; url=../index.php" />
+</head>

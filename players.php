@@ -93,53 +93,8 @@
     <!--- End Navigation -->
 
 <body>
-    <div class="row-select">
-        <h1>Vælg Klub</h1>
-        <form id="chooseTeam" method="post" action="#">
-            <h3 name="idTeam" id="idTeam"></h3>
-            <select name="teamSelect" id="teamSelect" required>
-                <option value=0>Select Team</option>
-                <?php
-                $sql = "SELECT * FROM finedb.club";
-                $result = mysqli_query($conn, $sql);
-                $resultCheck = mysqli_num_rows($result);
-                if ($resultCheck > 0) {
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        echo '
-									<div class="col-10 col-md-6">
-										<option id=' . $row['C_ID'] . '>' . $row['C_Name'] . '</option>
-									</div>
-									';
-                    }
-                }
-                ?>
-            </select>
-            <br>
-            <br>
-            <input type="submit" class="btn btn-success" name="submit" id="submitTeam" value="Se spillere">
-        </form>
-        <?php
-        if (isset($_POST['submit'])) {
-            $query = "SELECT C_ID, C_Name
-            from finedb.club
-            INNER JOIN finedb.player ON player.PL_C_ID = club.C_ID 
-            WHERE C_ID = PL_C_ID;
-            ";
-            $data = mysqli_query($conn, $query);
-
-            if (!$data) {
-                echo ("Error description: " . mysqli_error($conn));
-            } else {
-
-                while ($row = mysqli_fetch_array($data)) {
-                    echo "<tr>
-                        <td style=font-weight: bold;>" . $row['C_Name'] . "<br>" . "</td>
-                        <td>" . $row['PL_Name'] . "<br> <br>" . "</td>                                      
-                      </tr>";
-                }
-            }
-        }
-        ?>
+    <div class="row">
+        <?php include_once 'testing/allPlayers.php' ?>
     </div>
     <!--- Script Source Files -->
     <?php include_once 'includes/scripts.php'; ?>

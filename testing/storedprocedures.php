@@ -11,7 +11,9 @@ if ($resultCheck > 0) {
         <h3>' . $row['Fine'] . '</h3>
         <h5>' . $row['Player Name'] . '</h5>
         <p>' . $row['Description'] . '</p>
-        <button class="fakeimg">Betal ' . $row['Price'] . ',- </button>
+        <a href="https://mobilepay.dk/box?id=2ccf17fd-c8df-4c22-b875-6f6479681ec4&phone=6891YK&v=6p4" target="_blank">
+            <button class="fakeimg">Betal ' . $row['Price'] . ',- </button>
+        </a>
     </div>';
     }
 }
@@ -29,6 +31,7 @@ if ($resultCheck > 0) {
     while ($row = mysqli_fetch_array($result)) {
         echo '
     <div class="card">
+        <h4>Flest Bøder</h4>
         <div class="fakeimg"><strong>Navn</strong> <br> ' . $row['Player Name'] . '</div><br>
         <div class="fakeimg"><strong>Antal Bøder</strong> <br>' . $row['Most Fines'] . '</div>
     </div>
