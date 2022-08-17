@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<?php include 'includes/head.php' ?>
+<?php include 'includes/scripts.php' ?>
+<?php include_once 'includes/db.php' ?>
 
 <head>
-    <?php include_once 'includes/db.php'; ?>
-    <?php include 'includes/head.php'; ?>
-    <style>
+    <meta charset="UTF-8">
+</head>
+
+<style>
         * {
             box-sizing: border-box;
         }
@@ -15,57 +18,6 @@
             padding: 25px;
             background: #f1f1f1;
         }
-
-        .header {
-            padding: 30px;
-            font-size: 40px;
-            text-align: center;
-            background: white;
-        }
-
-        .card {
-            background-color: white;
-            padding: 10px;
-            margin-top: 20px;
-        }
-
-        .fakeimg {
-            background-color: green;
-            color: white;
-            width: 100%;
-            padding: 20px;
-        }
-
-        .leftcolumn {
-            float: left;
-            width: 75%;
-        }
-
-        .rightcolumn {
-            float: right;
-            width: 25%;
-            padding-left: 20px;
-        }
-
-        .row:after {
-            content: "";
-            display: table;
-            clear: both;
-        }
-
-        .footer {
-            padding: 20px;
-            text-align: center;
-            background: #ddd;
-            margin-top: 20px;
-        }
-
-        .container {
-            color: black;
-            font-weight: bold;
-            text-align: center;
-        }
-
 
         /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
         @media screen and (max-width: 800px) {
@@ -86,31 +38,91 @@
             }
         }
     </style>
-    <!--- Navigation -->
-
-    <?php include 'includes/navbar.php'; ?>
-
-
-    <!--- End Navigation -->
 
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm">
-                <h5></h5>
-                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
-            </div>
-            <div class="col-sm">
-                Opret bøde
-            </div>
-            <div class="col-sm">
-                Opret en brugerdefinderede bøde
+    <?php include 'includes/navbar.php' ?>
+    <!--- End Navigation -->
+    <div class="row justify-content-center" style="text-align: center;">
+        <!-- Modal - Create -->
+        <div class="col-md-4">
+            <h2>Opret bøde</h2>
+            <!-- Content HUSK -->
+            <div>
+                <form id="createFine" action="testing/createFine.php" method="post" autocomplete="off">
+                    <div class="mt-2">
+                        <input placeholder="Bøde Navn" type="text" name="fineName" id="fineName" required>
+                    </div>
+
+                    <div class="mt-2">
+                        <input placeholder="Bøde Beskrivelse" type="text" name="fineDescription" id="fineDescription" required>
+                    </div>
+
+                    <div class="mt-2">
+                        <input placeholder="Bøde Pris" max=1000 type="number" name="finePrice" id="finePrice" required>
+                    </div>
+
+                    <div class="mt-2">
+                        <input type="submit" class="btn btn-success" name="submit-button" value="Opret Bøde">
+                    </div>
+                </form>
             </div>
         </div>
+        <!--- Modal Ends --->
+
+        <br>
+        <br>
+
+        <!-- Modal - Give -->
+            <!-- content-->
+            <div class="col-md-4">
+                <h2>Speciel bøde</h2>
+                <form id="giveFine" action="testing/giveFine.php" method="post" autocomplete="off" >
+                    <div class="mt-2">
+                        <select name="selectPlayerId" id="selectPlayerId" required style="width:180px;">
+                            <?php
+                            $sql = "SELECT * FROM finedb.player";
+                            $result = mysqli_query($conn, $sql);
+                            $resultCheck = mysqli_num_rows($result);
+                            if ($resultCheck > 0) {
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    echo '
+									<div class="col-10 col-md-6">
+										<option id="playerId" value='. $row['PL_ID'] .'>' . $row['PL_Name'] . '</option>
+									</div>
+									';
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div>
+
+                    <div class="mt-2">
+                        <select name="selectFineId" id="selectFineId" required style="width:180px;">
+                            <?php
+                            $sql = "SELECT * FROM finedb.fine";
+                            $result = mysqli_query($conn, $sql);
+                            $resultCheck = mysqli_num_rows($result);
+                            if ($resultCheck > 0) {
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    echo '
+									<div class="col-10 col-md-6">
+										<option id="fineId" value=' . $row['F_ID'] . '>' . $row['F_Fine'] . '</option>
+									</div>
+									';
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="mt-2">
+                        <input type="submit" class="btn btn-success" name="submit-button" id="submitGive" value="Giv bøde">
+                    </div>
+                </form>
+            </div>
+        <!--- Modal Ends --->
     </div>
-    <!--- Script Source Files -->
-    <?php include_once 'includes/scripts.php'; ?>
-    <!--- End of Script Source Files -->
+
 
 </body>
+
 </html>
