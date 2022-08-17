@@ -15,6 +15,12 @@ include 'includes/navbar.php'; ?>
             box-sizing: border-box;
         }
 
+        .card {
+            background-color: white;
+            padding: 1%;
+            margin-top: 1%;
+        }
+
         body {
             font-family: Arial;
             margin-top: 2%;
@@ -25,7 +31,7 @@ include 'includes/navbar.php'; ?>
         /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
         @media screen and (max-width: 800px) {
             body {
-                margin-top: 12%;
+                margin-top: 0%;
             }
         }
     </style>
@@ -49,8 +55,8 @@ include 'includes/navbar.php'; ?>
 
     foreach ($scores as $_score) { ?>
 
-        <div>
-            <div class="row bg-info text-dark">
+        <div class="card bg-info mb-3">
+            <div class="row text-dark">
                 <div class="col-md-2 time-box">
                     <?= $_score['competition_name'] ?>
                 </div>
@@ -58,7 +64,7 @@ include 'includes/navbar.php'; ?>
                     <?= $_score['scheduled'] ?>
                 </div>
             </div>
-            <div class="row bg-info text-dark">
+            <div class="row text-dark">
                 <div class="col-md-2 time-box">
                     <?= $_score['time'] ?>'
                 </div>
@@ -72,8 +78,6 @@ include 'includes/navbar.php'; ?>
                     <?= $_score['away_name'] ?>
                 </div>
             </div>
-            <br>
-            <br>
         </div>
 </body>
 

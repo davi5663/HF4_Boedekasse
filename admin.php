@@ -80,7 +80,7 @@
 
         <!-- Giv bøde -->
         <div class="col-md-3">
-            <h2>Speciel bøde</h2>
+            <h2>Giv bøde</h2>
             <form id="giveFine" action="testing/giveFine.php" method="post" autocomplete="off">
                 <div class="mt-2">
                     <select name="selectPlayerId" id="selectPlayerId" required style="width:180px;">

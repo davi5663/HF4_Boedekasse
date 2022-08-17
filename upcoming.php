@@ -5,7 +5,7 @@
 <?php include_once 'includes/db.php'; ?>
 <?php include 'includes/head.php'; ?>
 
-<?php $page = 'calendar';
+<?php $page = 'upoming';
 include 'includes/navbar.php'; ?>
 
 <head>
@@ -83,7 +83,7 @@ include 'includes/navbar.php'; ?>
             }
 
             body {
-                margin-top: 12%;
+                margin-top: 0%;
             }
 
             .card {
@@ -110,8 +110,9 @@ include 'includes/navbar.php'; ?>
 
     include 'includes/left.php'; ?>
 
-        <?php foreach ($fixtures as $_fixtures) { ?>
-            <div class="row bg-info text-dark">
+    <?php foreach ($fixtures as $_fixtures) { ?>
+        <div class="card bg-info">
+            <div class="row text-dark">
                 <div class="col-md-2 time-box">
                     <?= $_fixtures['time'] ?>
                 </div>
@@ -125,11 +126,11 @@ include 'includes/navbar.php'; ?>
                     <?= $_fixtures['away_name'] ?>
                 </div>
             </div>
-            <br>
+        </div>
 </body>
 
 </html>
 <?php
-        }
-        include 'includes/right.php';
+    }
+    include 'includes/right.php';
 ?>

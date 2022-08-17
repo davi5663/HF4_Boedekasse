@@ -22,7 +22,7 @@ if ($resultCheck > 0) {
 }
 mysqli_free_result($result);
 mysqli_next_result($conn);
-echo '</div> </div>';
+echo '</div></div>';
 
 
 

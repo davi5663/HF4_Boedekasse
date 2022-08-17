@@ -11,7 +11,7 @@ if ($resultCheck > 0) {
         <h3>' . $row['Fine'] . '</h3>
         <h5>' . $row['Player Name'] . '</h5>
         <p>' . $row['Description'] . '</p>
-        <a href="https://mobilepay.dk/box?id=2ccf17fd-c8df-4c22-b875-6f6479681ec4&phone=6891YK&v=6p4" target="_blank">
+        <a href="mobilepay://send?id=2ccf17fd-c8df-4c22-b875-6f6479681ec4&phone=6891YK" target="_blank">
             <button class="fakeimg">Betal ' . $row['Price'] . ',- </button>
         </a>
     </div>';
