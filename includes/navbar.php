@@ -28,9 +28,9 @@
 											} ?>" href="livescore.php">LiveScore</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link <?php if ($page == 'upoming') {
+						<a class="nav-link <?php if ($page == 'upcoming') {
 												echo 'active';
-											} ?>" href="upoming.php">Kommende Kampe</a>
+											} ?>" href="upcoming.php">Kommende Kampe</a>
 					</li>
 			</div>
 		</div>

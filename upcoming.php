@@ -5,7 +5,7 @@
 <?php include_once 'includes/db.php'; ?>
 <?php include 'includes/head.php'; ?>
 
-<?php $page = 'upoming';
+<?php $page = 'upcoming';
 include 'includes/navbar.php'; ?>
 
 <head>
