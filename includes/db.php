@@ -1,6 +1,6 @@
 <?php
-$API_KEY = "zij1ZnrKTw6RD9bw";
-$API_SECRET = "DTQdqOmfknViNr3mKmnJKPtDlAvYJGvn";
+$API_KEY = "WsGzwgwinKE8u3Nx";
+$API_SECRET = "Fp5Nm0KFRKPfVuoRW5qtlXMIHqRcuEK9";
 $servername = "localhost";
 $username = "root";
 $password = "";

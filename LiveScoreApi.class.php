@@ -79,7 +79,7 @@ class LiveScoreApi
 	}
 
 	/**
-	 * Gets the live scores
+	 * Gets upcoming games
 	 *
 	 * @param array $params filter para meters
 	 * @return array with live scores data
