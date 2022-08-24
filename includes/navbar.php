@@ -32,6 +32,14 @@
 												echo 'active';
 											} ?>" href="upcoming.php">Kommende Kampe</a>
 					</li>
+					<li class="nav-item">
+						<a>  </a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link <?php if ($page == 'admin') {
+												echo 'active';
+											} ?>" href="admin.php">Admin</a>
+					</li>
 			</div>
 		</div>
 	</nav>

@@ -2,6 +2,8 @@
 <?php include 'includes/head.php' ?>
 <?php include 'includes/scripts.php' ?>
 <?php include_once 'includes/db.php' ?>
+<?php $page = 'admin';
+    include 'includes/navbar.php'; ?>
 
 <head>
     <meta charset="UTF-8">
